@@ -8,4 +8,8 @@ with open("C:\\Users\\monil.joshi\\Documents\\monilj\\pycharmprojects\\RestAPITe
     print("============ Print Website ============")
     print(data['dashboard'])
     print(data['dashboard']['website'])
-
+    print("============ Print Price of RPA course irrespective of its index ============")
+    print(data['courses'])
+    for i in data['courses']:
+        if i['title'] == 'RPA':
+            print(i['price'])
