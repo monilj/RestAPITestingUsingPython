@@ -23,3 +23,15 @@ for det in json_response:
     if det['isbn'] == 'PSRS':
         print(det['book_name'])
         print(det['aisle'])
+
+for book in json_response:
+    if book['isbn'] == 'PSRS':
+        print(book)
+        break
+
+expected_book = {
+    "book_name": "Python Selenium 18hrs By Rahul Shetty",
+    "isbn": "PSRS",
+    "aisle": "19"
+}
+assert book == expected_book
