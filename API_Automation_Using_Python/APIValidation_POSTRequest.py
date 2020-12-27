@@ -1,8 +1,11 @@
 import requests
+import configparser
 
 from API_Automation_Using_Python.PayLoad import addBookPayLoad
+from util import configurations
 
-addBook_response = requests.post('http://216.10.245.166/Library/AddBook.php', json=addBookPayLoad()
+addBook_response = requests.post(configurations.getConfig()['API']['endpoint'] + '/Library/AddBook.php',
+                                 json=addBookPayLoad()
                                  , headers={"content-type": "application/json"}, )
 
 print(addBook_response.json())
