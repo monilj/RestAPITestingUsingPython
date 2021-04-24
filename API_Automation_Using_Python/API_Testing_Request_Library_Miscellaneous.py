@@ -1,6 +1,8 @@
 import requests
 
 cookie = {'visit-month': 'Febuary'}
+# To check redirection history  response.history()
+# To avoid redirection use allow_redirects= False
 rep = requests.get("https://rahulshettyacademy.com/",allow_redirects= False, cookies=cookie, timeout=4)
 print(rep.history)
 print(rep.status_code)
