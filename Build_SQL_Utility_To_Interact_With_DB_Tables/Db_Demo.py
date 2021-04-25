@@ -7,8 +7,26 @@ conn = mysql.connector.connect(host='localhost', database='APIDevelop',
 print(conn.is_connected())
 cursor_bj = conn.cursor()
 cursor_bj.execute('select * from CustomerInfo')
-row = cursor_bj.fetchone()
-print(row)
-print(row[3])
-rowAll = cursor_bj.fetchall()
-print(rowAll)
+# row = cursor_bj.fetchone()
+# print(row)
+# print(row[3])
+# rowAll = cursor_bj.fetchall()
+# print(rowAll)
+
+rows = cursor_bj.fetchall()
+print(rows)
+
+sum = 0
+for row in rows:
+    sum = sum + row[2]
+print(sum)
+
+query = "update customerInfo set Location = %s where CourseName = %s"
+data = ("UK", "Jmeter")
+cursor_bj.execute(query, data)
+conn.commit()
+delete_query = "delete from customerInfo where courseName = %s"
+data2 = ("WebServices",)
+cursor_bj.execute(delete_query,data2)
+conn.commit()
+conn.close()
