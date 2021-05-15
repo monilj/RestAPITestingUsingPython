@@ -1,9 +1,9 @@
 import mysql.connector
-
+from util.configurations import *
 # accepts 4 paramters host (where your mysql server is present),  database name , autheticatio username ,autheticatio password
-conn = mysql.connector.connect(host='localhost', database='APIDevelop',
-                               user='root', password='root')
-
+# conn = mysql.connector.connect(host='localhost', database='APIDevelop',
+#                                user='root', password='root')
+conn = getConnection()
 print(conn.is_connected())
 cursor_bj = conn.cursor()
 cursor_bj.execute('select * from CustomerInfo')
