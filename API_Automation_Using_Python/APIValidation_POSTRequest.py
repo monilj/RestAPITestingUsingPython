@@ -1,14 +1,15 @@
 import requests
 import configparser
 
-from API_Automation_Using_Python.PayLoad import addBookPayLoad
+from API_Automation_Using_Python.PayLoad import addBookPayLoad, buildPayLoadFromDb
 from util import configurations
 from util.resources import ApiResources
 
 url = configurations.getConfig()['API']['endpoint'] + ApiResources.addBook
 headers = {"content-type": "application/json"}
+query = 'Select * from Books'
 addBook_response = requests.post(url,
-                                 json=addBookPayLoad()
+                                 json=buildPayLoadFromDb(query)
                                  , headers=headers, )
 
 print(addBook_response.json())
