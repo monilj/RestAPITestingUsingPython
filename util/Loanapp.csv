@@ -1,6 +1,1 @@
-Name,Status
-Tim,Approved
-Jim,Approved
-Ram,Approved
-Rim,Rejected
-Sim,Rejected
+Name,StatusTim,ApprovedJim,ApprovedRam,ApprovedRim,RejectedSim,RejectedGon,RejectedBob,Rejected

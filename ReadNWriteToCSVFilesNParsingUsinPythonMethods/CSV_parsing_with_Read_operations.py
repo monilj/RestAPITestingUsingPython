@@ -3,7 +3,6 @@ import csv
 with open(
         r'C:\Users\monil.joshi\Documents\monilj\pycharmprojects\RestAPITestingUsingPython\util\Loanapp.csv') as csvFile:
     csvReader = csv.reader(csvFile, delimiter=',')
-    # print(list(csvReader))
     names = []
     status = []
     for row in csvReader:
@@ -14,3 +13,10 @@ print(status)
 
 index = names.index('Sim')
 print(status[index])
+
+with open(
+        r'C:\Users\monil.joshi\Documents\monilj\pycharmprojects\RestAPITestingUsingPython\util\Loanapp.csv',
+        'a') as csvW:
+    writeToF = csv.writer(csvW)
+    newo = ["Gon", "Rejected"]
+    writeToF.writerow(newo)
