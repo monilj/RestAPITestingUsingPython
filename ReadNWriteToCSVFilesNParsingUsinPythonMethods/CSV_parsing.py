@@ -9,5 +9,8 @@ with open(
     for row in csvReader:
         names.append(row[0])
         status.append(row[1])
-    print(names)
-    print(status)
+print(names)
+print(status)
+
+index = names.index('Sim')
+print(status[index])
