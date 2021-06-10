@@ -16,3 +16,10 @@ stdin, stdout, stderr = sshCo.exec_command("cat <file_name>")
 lines = stdout.readlines()
 print(lines[1])
 sshCo.close()
+
+# Upload file
+sftpF = sshCo.open_sftp()
+destinationPath='<filePath/fileName>'
+localPath='<filePath_from_where_you_uploads>'
+sftpF.put(localPath,destinationPath)
+
