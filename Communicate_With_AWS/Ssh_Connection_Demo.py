@@ -15,11 +15,18 @@ sshCo.connect(host, port, userName, port)
 stdin, stdout, stderr = sshCo.exec_command("cat <file_name>")
 lines = stdout.readlines()
 print(lines[1])
-sshCo.close()
 
 # Upload file
 sftpF = sshCo.open_sftp()
-destinationPath='<filePath/fileName>'
-localPath='<filePath_from_where_you_uploads>'
-sftpF.put(localPath,destinationPath)
+destinationPath = '<filePath/fileName>'
+localPath = '<filePath_from_where_you_uploads>'
+sftpF.put(localPath, destinationPath)
 
+# Trigger Batch commands
+sshCo.exec_command("python <fileName.py>")
+
+# Download the file in to local system
+sftpF.get('<filePath_from_where_to_download>', 'destination_folder_in_local_Machine')
+
+# Parse output file and write assertion on data
+sshCo.close()
