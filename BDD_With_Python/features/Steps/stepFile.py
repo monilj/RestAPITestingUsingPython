@@ -1,6 +1,6 @@
 import requests
 from behave import *
-from payLoad import *
+from API_Automation_Using_Python.PayLoad import *
 from util.configurations import *
 from util.resources import *
 
@@ -9,7 +9,7 @@ from util.resources import *
 def step_given(context):
     context.url = getConfig()['API']['endpoint'] + ApiResources.addBook
     context.headers = {"Content-Type": "application/json"}
-    context.payLoad = buildPayLoadFromDb("manfdfppt", "4373");
+    context.payLoad = addBookPayLoad("manfdfppt","433")
 
 
 @when(u'we execute the AddBook PostAPI method')
@@ -24,3 +24,10 @@ def step_impl(context):
     bookId = response_json['ID']
     print(context.bookId)
     assert response_json["Msg"] == "successfully added"
+
+
+@given('the Book details with {isbn} and {aisle}')
+def step_impl(context,isbn,aisle):
+    context.url = getConfig()['API']['endpoint'] + ApiResources.addBook
+    context.headers = {"Content-Type": "application/json"}
+    context.payLoad = addBookPayLoad(isbn, aisle);
