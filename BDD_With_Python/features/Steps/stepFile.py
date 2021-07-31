@@ -9,7 +9,7 @@ from util.resources import *
 def step_given(context):
     context.url = getConfig()['API']['endpoint'] + ApiResources.addBook
     context.headers = {"Content-Type": "application/json"}
-    context.payLoad = addBookPayLoad("manfdfppt","433")
+    context.payLoad = addBookPayLoad("manfdfppt", "433")
 
 
 @when(u'we execute the AddBook PostAPI method')
@@ -27,7 +27,24 @@ def step_impl(context):
 
 
 @given('the Book details with {isbn} and {aisle}')
-def step_impl(context,isbn,aisle):
+def step_impl(context, isbn, aisle):
     context.url = getConfig()['API']['endpoint'] + ApiResources.addBook
     context.headers = {"Content-Type": "application/json"}
     context.payLoad = addBookPayLoad(isbn, aisle);
+
+
+@given('I have github auth credentials')
+def step_impl(context):
+    context.se = requests.session()
+    context.se.auth = auth = ('rahulshettyacademy', 'password')
+
+
+@when(u'I hit getRepo API of github')
+def step_impl(context):
+    context.response = context.se.get(ApiResources.githubRepo)
+
+
+@then(u'status code of response should be {statusCode:d}')
+def step_impl(context, statusCode):
+    print(context.response.status_code)
+    assert context.response.status_code == statusCode
